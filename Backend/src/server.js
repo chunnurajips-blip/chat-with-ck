@@ -14,10 +14,20 @@ const __dirname = path.resolve();
 
 const PORT = process.env.PORT || 3000;
 
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173", // local development
+      "https://chat-with-gijj787i9-coderpro.vercel.app", // your Vercel frontend
+    ],
+    credentials: true,
+  }),
+);
+
+app.use(express.json());
+
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messagesRoutes);
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
-
 //make ready for deployement
 
 if (process.env.NODE_ENV == "production") {
