@@ -5,6 +5,7 @@ import authRoutes from "./Routes/auth.routes.js";
 import messagesRoutes from "./Routes/messages.routes.js";
 import path from "path";
 import cors from "cors";
+import { connectDB } from "./lib/db.js";
 
 dotenv.config();
 
@@ -40,4 +41,5 @@ if (process.env.NODE_ENV == "production") {
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+  connectDB();
 });
