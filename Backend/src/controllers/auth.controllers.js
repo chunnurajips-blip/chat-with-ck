@@ -14,10 +14,7 @@ export const signup = async (req, res) => {
         .status(400)
         .json({ message: "password should  atleast 6 character" });
     }
-    console.log("req.body:", req.body);
-    console.log("email:", email);
-    console.log("typeof email:", typeof email);
-    console.log("email length:", email?.length);
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({ message: "Please Enter a valid email " });
@@ -41,8 +38,11 @@ export const signup = async (req, res) => {
     });
 
     if (newUser) {
-      generateToken(newUser._id, res);
-      await newUser.save();
+      // generateToken(newUser._id, res);
+      // await newUser.save();
+
+      const savedUser = await newUser.save();
+      generateToken(savedUser._id, res);
 
       res.status(201).json({
         _id: newUser._id,
