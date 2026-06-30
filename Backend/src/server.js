@@ -1,5 +1,6 @@
 // const express = require("express");
 import express from "express";
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import authRoutes from "./Routes/auth.routes.js";
 import messagesRoutes from "./Routes/messages.routes.js";
@@ -27,9 +28,11 @@ app.use(
 );
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messagesRoutes);
+
 //make ready for deployement
 
 if (ENV.NODE_ENV == "production") {
