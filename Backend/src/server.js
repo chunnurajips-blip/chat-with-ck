@@ -1,5 +1,4 @@
 // const express = require("express");
-import "dotenv/config";
 import express from "express";
 import dotenv from "dotenv";
 import authRoutes from "./Routes/auth.routes.js";
@@ -7,14 +6,13 @@ import messagesRoutes from "./Routes/messages.routes.js";
 import path from "path";
 import cors from "cors";
 import { connectDB } from "./lib/db.js";
-
-dotenv.config();
+import { ENV } from "./lib/env.js";
 
 const app = express();
 
 const __dirname = path.resolve();
 
-const PORT = process.env.PORT || 3000;
+const PORT = ENV.PORT || 3000;
 
 app.use(express.json()); // req.body
 
@@ -34,7 +32,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/messages", messagesRoutes);
 //make ready for deployement
 
-if (process.env.NODE_ENV == "production") {
+if (ENV.NODE_ENV == "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
   app.get("*", (_, res) => {
