@@ -1,12 +1,14 @@
 import cloudinary from "../lib/cloudinary.js";
 import { getReceiverSocketId, io } from "../lib/socket.js";
-import Message from "../models/Message.js";
-import User from "../models/User.js";
+import Message from "../models/message.model.js";
+import User from "../models/user.model.js";
 
 export const getAllContacts = async (req, res) => {
   try {
     const loggedInUserId = req.user._id;
-    const filteredUsers = await User.find({ _id: { $ne: loggedInUserId } }).select("-password");
+    const filteredUsers = await User.find({
+      _id: { $ne: loggedInUserId },
+    }).select("-password");
 
     res.status(200).json(filteredUsers);
   } catch (error) {
@@ -44,7 +46,9 @@ export const sendMessage = async (req, res) => {
       return res.status(400).json({ message: "Text or image is required." });
     }
     if (senderId.equals(receiverId)) {
-      return res.status(400).json({ message: "Cannot send messages to yourself." });
+      return res
+        .status(400)
+        .json({ message: "Cannot send messages to yourself." });
     }
     const receiverExists = await User.exists({ _id: receiverId });
     if (!receiverExists) {
@@ -93,12 +97,14 @@ export const getChatPartners = async (req, res) => {
         messages.map((msg) =>
           msg.senderId.toString() === loggedInUserId.toString()
             ? msg.receiverId.toString()
-            : msg.senderId.toString()
-        )
+            : msg.senderId.toString(),
+        ),
       ),
     ];
 
-    const chatPartners = await User.find({ _id: { $in: chatPartnerIds } }).select("-password");
+    const chatPartners = await User.find({
+      _id: { $in: chatPartnerIds },
+    }).select("-password");
 
     res.status(200).json(chatPartners);
   } catch (error) {
