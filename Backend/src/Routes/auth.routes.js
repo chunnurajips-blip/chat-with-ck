@@ -10,7 +10,7 @@ import { arcjectProtection } from "../middleware/arcject.middleware.js";
 
 const router = express.Router();
 
-router.use(arcjectProtection);
+router.use(arcjectProtection, protectRoute);
 
 router.post("/signup", signup);
 router.post("/login", login);
