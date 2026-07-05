@@ -21,6 +21,8 @@ function SignUpPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("Button clicked");
+    console.log(formData);
     signup(formData);
   };
 
@@ -67,7 +69,7 @@ function SignUpPage() {
                             fullName: e.target.value,
                           })
                         }
-                        placeholder="John Doe"
+                        placeholder="chunnu kumar"
                         className="w-full rounded-xl border border-slate-700 bg-slate-900/70 py-3 pl-12 pr-4 text-white placeholder:text-slate-500 outline-none transition duration-300 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-500/20"
                       />
                     </div>
@@ -91,7 +93,7 @@ function SignUpPage() {
                             email: e.target.value,
                           })
                         }
-                        placeholder="johndoe@gmail.com"
+                        placeholder="chunnurajips@gmail.com"
                         className="w-full rounded-xl border border-slate-700 bg-slate-900/70 py-3 pl-12 pr-4 text-white placeholder:text-slate-500 outline-none transition duration-300 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-500/20"
                       />
                     </div>
