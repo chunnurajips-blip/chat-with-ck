@@ -19,7 +19,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173", // local development
-      "https://chat-with-gijj787i9-coderpro.vercel.app", // your Vercel frontend
+      "https://chat-with-ck.vercel.app", // vercel app
     ],
     credentials: true,
   }),
