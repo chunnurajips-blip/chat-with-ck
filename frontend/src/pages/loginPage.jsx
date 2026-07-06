@@ -1,3 +1,4 @@
+import { Navigate } from "react-router";
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import BorderAnimatedContainer from "../components/BorderAnimatedContainer";
@@ -17,11 +18,15 @@ function LoginPage() {
 
   const { login, isLoggingIn } = useAuthStore();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login(formData);
-  };
 
+    const success = await login(formData);
+
+    if (success) {
+      Navigate("/chat");
+    }
+  };
   return (
     <div className="min-h-screen bg-[#020617] flex items-center justify-center p-5 overflow-hidden">
       <div className="absolute inset-0">
