@@ -1,3 +1,4 @@
+import { Navigate } from "react-router";
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import BorderAnimatedContainer from "../components/BorderAnimatedContainer";
@@ -19,11 +20,14 @@ function SignUpPage() {
 
   const { signup, isSigningUp } = useAuthStore();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Button clicked");
-    console.log(formData);
-    signup(formData);
+
+    const success = await signup(formData);
+
+    if (success) {
+      Navigate("/login");
+    }
   };
 
   return (
