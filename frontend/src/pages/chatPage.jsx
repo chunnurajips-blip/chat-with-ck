@@ -9,7 +9,7 @@ import ChatsList from "../components/ChatsList";
 import ContactList from "../components/ContactList";
 import ChatContainer from "../components/ChatContainer";
 import NoConversationPlaceholder from "../components/NoConversationPlaceholder";
-import ProfilePage from "./ProfilePage";
+import ProfilePage from "./profilePage";
 import SettingsPage from "./settingPage";
 
 function ChatPage() {
