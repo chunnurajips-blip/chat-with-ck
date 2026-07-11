@@ -79,7 +79,7 @@ export const login = async (req, res) => {
 
   try {
     const user = await User.findOne({ email });
-    if (!User) return res.status(400).json({ message: "Invalid Credentials" });
+    if (!user) return res.status(400).json({ message: "Invalid Credentials" });
 
     // Never said the user which one is wrong Email : Password
     const isPasswordCorrect = await bycrypt.compare(password, user.password);
@@ -101,7 +101,13 @@ export const login = async (req, res) => {
 };
 
 export const logout = async (_, res) => {
-  res.cookie("jwt", "", { maxAge: 0 });
+  res.cookie("jwt", "", {
+    maxAge: 0,
+    httpOnly: true,
+    secure: ENV.NODE_ENV !== "development",
+    sameSite: ENV.NODE_ENV === "development" ? "lax" : "none",
+  });
+
   res.status(200).json({ message: "Logged Out Successfully" });
 };
 
