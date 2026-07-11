@@ -83,7 +83,7 @@ function LoginPage() {
                               email: e.target.value,
                             })
                           }
-                          placeholder="johndoe@gmail.com"
+                          placeholder="chunnurajips@gmail.com"
                           className="w-full pl-14 pr-5 py-4 rounded-2xl bg-slate-900/70 border border-slate-700 text-white placeholder:text-slate-500 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-500/20 outline-none transition-all"
                         />
                       </div>

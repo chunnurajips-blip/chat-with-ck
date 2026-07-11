@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from "react-router";
+import ProfilePage from "./pages/profilePage.jsx";
 import LoginPage from "./pages/loginPage.jsx";
 import ChatPage from "./pages/chatPage.jsx";
 import SignUpPage from "./pages/signUpPage.jsx";
@@ -24,6 +25,11 @@ function App() {
         <Route
           path="/"
           element={authUser ? <ChatPage /> : <Navigate to={"/login"} />}
+        />
+
+        <Route
+          path="/profile"
+          element={authUser ? <ProfilePage /> : <Navigate to="/login" />}
         />
         <Route
           path="/login"
